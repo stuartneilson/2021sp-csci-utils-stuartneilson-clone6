@@ -1,12 +1,8 @@
 language: python
+python: 3.7
 dist: xenial
 virt: lxd
 cache: false
-env:
-  global:
-    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
-    - SEGFAULT_SIGNALS=all
-    - LANG=en_US.UTF-8
 matrix:
   include:
     - python: '3.6'
@@ -33,7 +29,7 @@ before_install:
   - uname -a
   - lsb_release -a || true
 install:
-  - python -mpip install --progress-bar=off tox -rci/requirements.txt
+  - python -mpip install --progress-bar=off tox-travis -rci/requirements.txt
   - virtualenv --version
   - easy_install --version
   - pip --version
