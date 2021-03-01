@@ -5,8 +5,12 @@ name = "pypi"
 
 [packages]
 csci-utils = {editable = true, path = "."}
+distlib = {editable = true,path = "."}
 
 [dev-packages]
+pytest = "*"
+pytest-cov = "*"
+setuptools_scm="*"
 
 [requires]
 python_version = "3.8"
