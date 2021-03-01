@@ -5,7 +5,7 @@ source =
 
 [run]
 branch = true
-source =
+source = 
     csci_utils
     tests
 parallel = true
@@ -13,4 +13,9 @@ parallel = true
 [report]
 show_missing = true
 precision = 2
-omit = *migrations*
+omit =
+    */tests.py
+    */test_*.py
+    */*_tests.py
+    */__main__.py
+    */cli.py
