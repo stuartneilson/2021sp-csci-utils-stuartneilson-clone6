@@ -74,7 +74,10 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         "atomicwrites",
-        "pandas"
+        "pandas",
+        "canvasapi",
+        "environs",
+        "gitpython"
     ],
     extras_require={
         # eg:
