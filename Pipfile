@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+distlib = {editable = true, path = "."}
+pre-commit = "*"
+atomicwrites = "*"
+csci-utils = {editable = true, path = "."}
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+setuptools_scm="*"
+
+[requires]
+python_version = "3.8"

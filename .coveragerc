@@ -5,7 +5,7 @@ source =
 
 [run]
 branch = true
-source =
+source = 
     csci_utils
     tests
 parallel = true
