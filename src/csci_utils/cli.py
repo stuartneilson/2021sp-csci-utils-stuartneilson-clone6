@@ -25,12 +25,19 @@ from contextlib import contextmanager
 from typing import List, Dict, ContextManager, Union
 import os
 
-from csci_utils.canvas.canvas import get_assignment, get_quiz, get_submission_comments, pset_submission
+from csci_utils.canvas.canvas import (
+    get_assignment,
+    get_quiz,
+    get_submission_comments,
+    pset_submission,
+)
 from csci_utils.canvas.canvas_csci_utils import get_answers_pset2
 
-parser = argparse.ArgumentParser(description='Command description.')
-parser.add_argument('names', metavar='NAME', nargs=argparse.ZERO_OR_MORE,
-                    help="A name of something.")
+parser = argparse.ArgumentParser(description="Command description.")
+parser.add_argument(
+    "names", metavar="NAME", nargs=argparse.ZERO_OR_MORE, help="A name of something."
+)
+
 
 def main(args=None):
     args = parser.parse_args(args=args)
@@ -44,13 +51,20 @@ def main(args=None):
     course_id = env.int("CANVAS_COURSE_ID")
     canvas_url = env.str("CANVAS_URL")
     canvas_token = env.str("CANVAS_TOKEN")
-    assignment_name = 'CSCI Utils'
-    quiz_name = 'CSCI Utils Answers'
+    assignment_name = "CSCI Utils"
+    quiz_name = "CSCI Utils Answers"
 
-    with pset_submission(canvas_url, canvas_token, course_id, assignment_name, quiz_name, repo, url, do_submit=True) as qsubmission:
+    with pset_submission(
+        canvas_url,
+        canvas_token,
+        course_id,
+        assignment_name,
+        quiz_name,
+        repo,
+        url,
+        do_submit=True,
+    ) as qsubmission:
         questions = qsubmission.get_submission_questions()
-        answers = get_answers_pset2(questions,'15+', repo)
+        answers = get_answers_pset2(questions, "15+", repo)
         print(answers)
         responses = qsubmission.answer_submission_questions(quiz_questions=answers)
-
-    

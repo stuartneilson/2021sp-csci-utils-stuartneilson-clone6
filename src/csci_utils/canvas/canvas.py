@@ -10,12 +10,13 @@ from contextlib import contextmanager
 from typing import List, Dict, ContextManager, Union
 import os
 
+
 def get_assignment(course, assignment_name):
     """
     assignment from canvas API
-    
+
     :param course:
-    :param assignment_name: title of assignment 
+    :param assignment_name: title of assignment
     :return: canvas assignment object
     """
 
@@ -28,6 +29,7 @@ def get_assignment(course, assignment_name):
             assignment = a
 
     return assignment
+
 
 def get_quiz(course, quiz_title):
     """
@@ -44,6 +46,7 @@ def get_quiz(course, quiz_title):
             quiz = q
     return quiz
 
+
 def get_submission_comments(repo: Repo, qsubmission: QuizSubmission) -> Dict:
     """Provides some info about the submission, to pass to Canvas"""
     return dict(
@@ -59,7 +62,16 @@ def get_submission_comments(repo: Repo, qsubmission: QuizSubmission) -> Dict:
 
 
 @contextmanager
-def pset_submission(canvas_url, canvas_token, course_id, assignment_name, quiz_name, repo, url, do_submit=True):
+def pset_submission(
+    canvas_url,
+    canvas_token,
+    course_id,
+    assignment_name,
+    quiz_name,
+    repo,
+    url,
+    do_submit=True,
+):
     """Creates and yields a canvas submission object - the recieving context is responsible for filling in the answers component of the submission,
        this function will then submit those answers
 
@@ -69,8 +81,8 @@ def pset_submission(canvas_url, canvas_token, course_id, assignment_name, quiz_n
 
     canvas = canvasapi.Canvas(canvas_url, canvas_token)
     course = canvas.get_course(course_id)
-    assignment = get_assignment(course,assignment_name)
-    quiz = get_quiz(course,quiz_name)
+    assignment = get_assignment(course, assignment_name)
+    quiz = get_quiz(course, quiz_name)
 
     try:
         qsubmission = quiz.create_submission()
@@ -80,7 +92,7 @@ def pset_submission(canvas_url, canvas_token, course_id, assignment_name, quiz_n
         if do_submit:
             print("Submission to be attempted")
             if qsubmission is not None:
-                print ("Completing Submission")
+                print("Completing Submission")
                 completed = qsubmission.complete()
 
                 submission = assignment.submit(
@@ -89,10 +101,10 @@ def pset_submission(canvas_url, canvas_token, course_id, assignment_name, quiz_n
                         url=url,
                     ),
                     comment=dict(
-                        text_comment=json.dumps(get_submission_comments(repo, qsubmission))
-                    )
+                        text_comment=json.dumps(
+                            get_submission_comments(repo, qsubmission)
+                        )
+                    ),
                 )
-        else: 
+        else:
             print("Not submitting")
-
-

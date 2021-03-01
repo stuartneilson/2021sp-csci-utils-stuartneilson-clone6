@@ -3,8 +3,10 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 from csci_utils.io.io import atomic_write
 
+
 class FakeFileFailure(IOError):
     pass
+
 
 class AtomicWriteTests(TestCase):
     def test_atomic_write(self):
@@ -37,16 +39,16 @@ class AtomicWriteTests(TestCase):
                     raise FakeFileFailure()
 
             assert not os.path.exists(tmpfile)
-            assert not os.path.exists(fp) 
+            assert not os.path.exists(fp)
 
     def test_file_exists(self):
         """Ensure an error is raised when a file exists"""
 
         with TemporaryDirectory() as tmp:
             fp = os.path.join(tmp, "asdf.txt")
-            
-            with open(fp, 'w') as f:
+
+            with open(fp, "w") as f:
                 f.write("test content")
             with self.assertRaises(FileExistsError):
-                with atomic_write(fp, 'w') as f:
+                with atomic_write(fp, "w") as f:
                     f.write("this shouldn't work")
