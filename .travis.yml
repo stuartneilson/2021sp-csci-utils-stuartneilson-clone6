@@ -15,7 +15,7 @@ matrix:
         - TOXENV=py38
       python: '3.8'
     - stage: test
-      python: '3.7'
+      python: '3.8'
       install:
           - pipenv install --dev --ignore-pipfile --deploy
       before_script: # code coverage tool
