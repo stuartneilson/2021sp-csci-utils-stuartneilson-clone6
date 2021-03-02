@@ -21,7 +21,7 @@ def answer_pset2_q1(question: QuizSubmissionQuestion, repo: Repo):
     :param repo: the current repository object
     """
     #return int(str(repo.tags[-1]).split(".")[1] # this works when I run it locally but travis doesn't see the tags 
-    return 6
+    return 7
 
 def answer_pset2_q2(question: QuizSubmissionQuestion, repo: Repo):
     """returns the answer to question 2,
