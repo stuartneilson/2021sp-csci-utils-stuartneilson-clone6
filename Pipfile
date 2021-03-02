@@ -8,6 +8,9 @@ distlib = {editable = true, path = "."}
 pre-commit = "*"
 atomicwrites = "*"
 csci-utils = {editable = true, path = "."}
+canvasapi = "*"
+environs = "*"
+gitpython = "*"
 
 [dev-packages]
 pytest = "*"
